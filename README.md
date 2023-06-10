@@ -1,3 +1,77 @@
+# Dcoker(DB) oracle
+
+## 参考サイト
+(【Docker】Oracleを無料で簡単にローカルに構築する)[https://zenn.dev/re24_1986/articles/29430f2f8b4b46]
+
+## 環境
+- Windws Linux(WSL)
+
+## 手順
+
+### ORACLE EXPRESS EDITIONのダウンロード
+
+Oracle Database 21c Express Edition for Linux x64 ( OL7 )を使って環境構築  
+[https://www.oracle.com/jp/database/technologies/xe-downloads.html](https://www.oracle.com/jp/database/technologies/xe-downloads.html)
+
+### リポジトリにダウンロードしたOracleを配置
+
+上でダウンロードしたOracleをクローンしたリポジトリの以下ディレクトリに配置  
+```
+docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
+```
+
+### イメージ作成シェルの実行
+```
+cd OracleDatabase/SingleInstance/dockerfiles
+```
+```
+./buildContainerImage.sh -v 21.3.0 -x -i
+```
+
+**エラーが発生する際はPCを再起動**
+
+### 生成物確認
+```
+$ docker images
+REPOSITORY        TAG         IMAGE ID       CREATED       SIZE
+oracle/database   21.3.0-xe   6d27683dbb4b   13 days ago   6.54GB
+```
+
+### ymlファイル作成
+docker-compose.ymlを作成
+
+### コンテナ作成＆起動
+作成＆起動（docker-compose.ymlが存在するディレクトリで実行）  
+```
+docker-compose up -d
+```
+
+ログ確認  
+```
+docker-compose logs
+```
+
+ログ確認して以下のようなログが出てれば、Oracleが正常に起動  
+（READYになるまで時間が掛かる）  
+```
+#########################
+DATABASE IS READY TO USE!
+#########################
+```
+
+### sqlplus起動
+Oracleのコンテナに入る
+```
+docker exec -it oracle21c /bin/sh
+```
+
+sqlplus起動（作成ユーザーを確認）
+```
+sqlplus atman/atman@//localhost:1521/pdb01
+```
+
+___________________________________________________________
+___________________________________________________________
 # Docker Images from Oracle
 
 This repository contains [Dockerfiles](https://docs.docker.com/engine/reference/builder/)
