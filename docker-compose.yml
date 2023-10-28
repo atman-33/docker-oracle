@@ -8,8 +8,8 @@ services:
       - 1521:1521
     volumes:
       - db-store:/opt/oracle/oradata
-      - ./script/setup:/opt/oracle/scripts/setup  # コンテナ作成時に実行
-      # - ./script/setup:/opt/oracle/scripts/setup  # コンテナ起動時に実行
+      - ./scripts/setup:/opt/oracle/scripts/setup # コンテナ作成時に実行
+      # - ./scripts/setup:/opt/oracle/scripts/setup  # コンテナ起動時に実行
     environment:
       - ORACLE_PWD=password
 volumes:

@@ -17,7 +17,7 @@ Oracle Database 21c Express Edition for Linux x64 ( OL7 )を使って環境構�
 
 上でダウンロードしたOracleをクローンしたリポジトリの以下ディレクトリに配置  
 ```
-docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
+./OracleDatabase/SingleInstance/dockerfiles/21.3.0
 ```
 
 ### イメージ作成シェルの実行
@@ -25,7 +25,7 @@ docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
 cd OracleDatabase/SingleInstance/dockerfiles
 ```
 ```
-./buildContainerImage.sh -v 21.3.0 -x -i
+./buildContainerImage.sh -v 21.3.0 -x
 ```
 
 **エラーが発生する際はPCを再起動**
